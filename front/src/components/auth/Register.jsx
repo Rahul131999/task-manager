@@ -24,7 +24,7 @@ const Register = () => {
         variables: { username, password, role },
       });
       alert('Registration successful! Please log in.');
-      navigate('/login');
+      navigate('/');
     } catch (err) {
       console.error(err);
     }

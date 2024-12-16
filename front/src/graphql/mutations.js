@@ -25,7 +25,7 @@ export const REGISTER_USER = gql`
 
 // Create task mutation
 export const CREATE_TASK = gql`
-  mutation($title: String!, $description: String!, $assignedTo: ID!) {
+  mutation($title: String!, $description: String!, $assignedTo: String!) {
     createTask(title: $title, description: $description, assignedTo: $assignedTo) {
       title
       description
