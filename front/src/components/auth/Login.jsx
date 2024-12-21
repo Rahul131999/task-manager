@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -30,29 +31,47 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p>Error: {error.message}</p>}
-      </form>
-      <button type="submit" disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Logging in...' : 'Login'}
-      </button>
-      <button type="submit" onClick={()=>{navigate('/register')}}>
+    <div className="login-container">
+      <div className="login-form-wrapper">
+        <h2 className="login-heading">Login</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username" className="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          {error && <p className="error-message">Error: {error.message}</p>}
+          <button type="submit" disabled={loading} className="primary-button">
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={() => navigate('/register')}
+          className="secondary-button"
+        >
           Register
-      </button>
+        </button>
+      </div>
     </div>
   );
 };

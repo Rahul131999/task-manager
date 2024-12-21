@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../graphql/mutations';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,39 +32,60 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          required
+    <div className="register-container">
+      <div className="register-form-wrapper">
+        <h2 className="register-heading">Register</h2>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username" className="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="role" className="form-label">Role</label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="form-select"
+              required
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          {error && <p className="error-message">Error: {error.message}</p>}
+          <button type="submit" disabled={loading} className="primary-button">
+            {loading ? 'Registering...' : 'Register'}
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="secondary-button"
         >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-        {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-      </form>
-      <button type="submit" disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Registering...' : 'Register'}
-        </button>
-      <button type="submit" onClick={()=>{navigate('/')}}>
           Login
-      </button>
+        </button>
+      </div>
     </div>
   );
 };

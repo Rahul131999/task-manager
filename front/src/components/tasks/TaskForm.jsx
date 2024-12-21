@@ -3,14 +3,15 @@ import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_TASK } from '../../graphql/mutations';
 import { GET_USERS } from '../../graphql/queries';
 import { GET_TASKS } from '../../graphql/queries';
+import './TaskForm.css';
 
 const TaskForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
-  const { loading, error, data: usersData } = useQuery(GET_USERS); // Fetch users
+  const { loading, error, data: usersData } = useQuery(GET_USERS);
   const [createTask] = useMutation(CREATE_TASK, {
-    refetchQueries: [{ query: GET_TASKS }], // Refetch tasks after creating
+    refetchQueries: [{ query: GET_TASKS }],
   });
 
   const handleSubmit = async (e) => {
@@ -25,21 +26,26 @@ const TaskForm = () => {
   if (error) return <p>Error fetching users: {error.message}</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="task-form">
       <input
         type="text"
         placeholder="Task Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className="form-input"
+        required
       />
       <textarea
         placeholder="Task Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        className="form-input"
+        required
       />
       <select
         value={assignedTo}
         onChange={(e) => setAssignedTo(e.target.value)}
+        className="form-input"
         required
       >
         <option value="" disabled>
@@ -51,7 +57,9 @@ const TaskForm = () => {
           </option>
         ))}
       </select>
-      <button type="submit">Create Task</button>
+      <button type="submit" className="primary-button">
+        Create Task
+      </button>
     </form>
   );
 };

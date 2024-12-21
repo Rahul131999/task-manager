@@ -1,0 +1,10 @@
+.task-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .task-card-grid:hover .task-card {
+    opacity: 0.9;
+  }
+  

@@ -1,0 +1,111 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #cac8ae;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  /* Container */
+  .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+    max-width: 600px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Heading */
+  .register-heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
+  }
+  
+  /* Form */
+  .register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Input Groups */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 5px;
+  }
+  
+  .form-input, 
+  .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    text-align: left;
+    margin-top: -5px;
+  }
+  
+  /* Buttons */
+  .primary-button, 
+  .secondary-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .primary-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .secondary-button {
+    background-color: #007BFF;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .primary-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .primary-button:hover:not(:disabled),
+  .secondary-button:hover {
+    opacity: 0.9;
+  }
+  
