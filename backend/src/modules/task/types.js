@@ -1,6 +1,6 @@
 import { composeWithMongoose } from 'graphql-compose-mongoose';
-import Task from '../../models/Task.js';
+import Task from './model.js';
 
 const TaskTC = composeWithMongoose(Task);
 
-export default TaskTC;
+export { TaskTC };
