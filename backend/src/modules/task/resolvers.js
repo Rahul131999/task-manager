@@ -1,5 +1,6 @@
 import User from '../User/model.js';
 import Task from './model.js';
+import taskQueue from './service/queue.js';
 import { TaskTC } from './types.js';
 
 const createTask = async ({ title, description, assignedTo }, user) => {
@@ -31,6 +32,7 @@ const completeTask = async ({ id }, user) => {
   if (!task) throw new Error('Task not found');
 
   task.status = 'completed';
+  await taskQueue.add("heavyComputationalTask", {task})
   await task.save();
   return task;
 };

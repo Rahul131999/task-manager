@@ -2,11 +2,13 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from './model.js';
 import { UserTC, LoginResponseTC } from './types.js';
+import userQueue from './service/queue.js';
 
 const register = async ({ username, password, role }) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ username, password: hashedPassword, role });
   await user.save();
+  await userQueue.add('sendWelcomeEmail', { userId: user._id, username });
   return user;
 };
 
